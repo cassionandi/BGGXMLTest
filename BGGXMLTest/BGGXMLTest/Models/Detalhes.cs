@@ -12,20 +12,20 @@ using System.Threading.Tasks;
 using System;
 using System.Xml.Serialization;
 using System.Collections.Generic;
-namespace BGGXMLTest
+namespace BGGXMLTest.Models
 {
 
     [XmlRoot(ElementName = "items")]
-    public class ItemsDetalhe
+    public class RootDetalhe
     {
         [XmlElement(ElementName = "item")]
-        public ItemDetalhe Item { get; set; }
+        public DetalheItem Item { get; set; }
         [XmlAttribute(AttributeName = "termsofuse")]
         public string Termsofuse { get; set; }
     }
 
     [XmlRoot(ElementName = "name")]
-    public class NameDetalhe
+    public class DetalheNome
     {
         [XmlAttribute(AttributeName = "type")]
         public string Type { get; set; }
@@ -47,36 +47,36 @@ namespace BGGXMLTest
     }
 
     [XmlRoot(ElementName = "yearpublished")]
-    public class YearpublishedDetalhe
+    public class DetalheAnoPublicacao
     {
         [XmlAttribute(AttributeName = "value")]
         public string Value { get; set; }
     }
 
     [XmlRoot(ElementName = "seriescode")]
-    public class SeriescodeDetalhe
+    public class DetalheSeriesCode
     {
         [XmlAttribute(AttributeName = "value")]
         public string Value { get; set; }
     }
 
     [XmlRoot(ElementName = "item")]
-    public class ItemDetalhe
+    public class DetalheItem
     {
         [XmlElement(ElementName = "thumbnail")]
         public string Thumbnail { get; set; }
         [XmlElement(ElementName = "image")]
-        public string Image { get; set; }
+        public string Imagem { get; set; }
         [XmlElement(ElementName = "name")]
-        public List<NameDetalhe> Name { get; set; }
+        public List<DetalheNome> Nome { get; set; }
         [XmlElement(ElementName = "link")]
         public List<LinkDetalhe> Link { get; set; }
         [XmlElement(ElementName = "description")]
-        public string Description { get; set; }
+        public string Descricao { get; set; }
         [XmlElement(ElementName = "yearpublished")]
-        public YearpublishedDetalhe Yearpublished { get; set; }
+        public DetalheAnoPublicacao AnoPublicacao { get; set; }
         [XmlElement(ElementName = "seriescode")]
-        public SeriescodeDetalhe Seriescode { get; set; }
+        public DetalheSeriesCode Seriescode { get; set; }
         [XmlAttribute(AttributeName = "type")]
         public string Type { get; set; }
         [XmlAttribute(AttributeName = "id")]

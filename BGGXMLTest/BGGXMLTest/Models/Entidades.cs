@@ -2,27 +2,27 @@
 using System.Xml.Serialization;
 using System.Collections.Generic;
 
-namespace BGGXMLTest
+namespace BGGXMLTest.Models
 {
 
     [XmlRoot(ElementName = "items")]
-    public class Items
+    public class RootLista
     {
         [XmlElement(ElementName = "item")]
-        public List<Item> Item { get; set; }
+        public List<ItemLista> Lista { get; set; }
         [XmlAttribute(AttributeName = "termsofuse")]
-        public string Termsofuse { get; set; }
+        public string TermosDeUso { get; set; }
     }
 
     [XmlRoot(ElementName = "item")]
-    public class Item
+    public class ItemLista
     {
         [XmlElement(ElementName = "thumbnail")]
-        public Thumbnail Thumbnail { get; set; }
+        public ItemThumbnail Thumbnail { get; set; }
         [XmlElement(ElementName = "name")]
-        public Name Name { get; set; }
+        public ItemNome Nome { get; set; }
         [XmlElement(ElementName = "yearpublished")]
-        public Yearpublished Yearpublished { get; set; }
+        public ItemAnoPublicacao AnoPublicacao { get; set; }
         [XmlAttribute(AttributeName = "id")]
         public string Id { get; set; }
         [XmlAttribute(AttributeName = "rank")]
@@ -30,21 +30,21 @@ namespace BGGXMLTest
     }
 
     [XmlRoot(ElementName = "thumbnail")]
-    public class Thumbnail
+    public class ItemThumbnail
     {
         [XmlAttribute(AttributeName = "value")]
         public string Value { get; set; }
     }
 
     [XmlRoot(ElementName = "name")]
-    public class Name
+    public class ItemNome
     {
         [XmlAttribute(AttributeName = "value")]
         public string Value { get; set; }
     }
 
     [XmlRoot(ElementName = "yearpublished")]
-    public class Yearpublished
+    public class ItemAnoPublicacao
     {
         [XmlAttribute(AttributeName = "value")]
         public string Value { get; set; }

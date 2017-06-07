@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BGGXMLTest.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,20 +32,20 @@ namespace BGGXMLTest
             return xml;
         }
 
-        public static async Task<Items> GetItems()
+        public static async Task<RootLista> GetItems()
         {
 
             string HOT_RPG_URL = "hot?type=rpg";
 
             var xml = await GetURLContent(HOT_RPG_URL);
 
-            Items obj = new Items();
+            RootLista lista = new RootLista();
 
             using (TextReader reader = new StringReader(xml))
             {
                 try
                 {
-                    obj = (Items)new XmlSerializer(typeof(Items)).Deserialize(reader);
+                    lista = (RootLista)new XmlSerializer(typeof(RootLista)).Deserialize(reader);
                 }
                 catch (InvalidOperationException)
                 {
@@ -52,22 +53,46 @@ namespace BGGXMLTest
                 }
             }
 
-            return obj;
+            return lista;
         }
 
-
-        public static async Task<ItemsDetalhe> GetItemDetalhe(int id)
+        public static async Task<RootLista> GetItems(string query)
         {
-            string RPG_ITEM = $"thing?id={id}";
-            var xml = await GetURLContent(RPG_ITEM);
 
-            ItemsDetalhe obj = new ItemsDetalhe();
+            string SEARCH_RPG_URL = $"search?type=rpgitem&query={query}";
+
+            var xml = await GetURLContent(SEARCH_RPG_URL);
+
+            RootLista lista = new RootLista();
 
             using (TextReader reader = new StringReader(xml))
             {
                 try
                 {
-                    obj = (ItemsDetalhe)new XmlSerializer(typeof(ItemsDetalhe)).Deserialize(reader);
+                    lista = (RootLista)new XmlSerializer(typeof(RootLista)).Deserialize(reader);
+                }
+                catch (InvalidOperationException)
+                {
+                    //XML inválido
+                }
+            }
+
+            return lista;
+
+        }
+
+        public static async Task<RootDetalhe> GetItemDetalhe(int id)
+        {
+            string RPG_ITEM = $"thing?id={id}";
+            var xml = await GetURLContent(RPG_ITEM);
+
+            RootDetalhe obj = new RootDetalhe();
+
+            using (TextReader reader = new StringReader(xml))
+            {
+                try
+                {
+                    obj = (RootDetalhe)new XmlSerializer(typeof(RootDetalhe)).Deserialize(reader);
                 }
                 catch (InvalidOperationException)
                 {

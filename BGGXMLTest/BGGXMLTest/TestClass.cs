@@ -43,7 +43,7 @@ namespace BGGXMLTest
 
             Assert.IsNotNull(items);
 
-            Assert.That(items.Item, Has.Count.EqualTo(50));
+            Assert.That(items.Lista, Has.Count.EqualTo(50));
 
         }
 
@@ -57,11 +57,11 @@ namespace BGGXMLTest
 
             Assert.AreEqual(detalhe.Item.Id, "44383");
 
-            Assert.That(detalhe.Item.Name, Has.Count.EqualTo(4));
+            Assert.That(detalhe.Item.Nome, Has.Count.EqualTo(4));
 
-            Assert.AreEqual(detalhe.Item.Name[0].Type, "primary");
+            Assert.AreEqual(detalhe.Item.Nome[0].Type, "primary");
 
-            Assert.AreEqual(detalhe.Item.Name[0].Value, "Trail of Cthulhu");
+            Assert.AreEqual(detalhe.Item.Nome[0].Value, "Trail of Cthulhu");
 
             Assert.That(detalhe.Item.Link, Has.Count.EqualTo(20));
 
@@ -71,5 +71,17 @@ namespace BGGXMLTest
 
         }
 
+
+        [Test]
+        public async Task TestBusca()
+        {
+
+            var items = await BGGClient.GetItems("Trail of Cthulhu: Player's Guide");
+
+            Assert.That(items.Lista, Has.Count.EqualTo(1));
+
+            Assert.AreEqual(items.Lista[0].Id, "65602");
+
+        }
     }
 }
